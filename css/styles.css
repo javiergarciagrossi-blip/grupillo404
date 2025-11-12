@@ -1,0 +1,276 @@
+/* RESET & VARIABLES */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --coca-red: #f40009;
+        --coca-white: #ffffff;        
+        --space-dark: #0a0e1f;        
+        --mars-orange: #cd5c5c;
+    }
+
+
+/* BODY */
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--coca-white);
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+        background: #000;
+    }
+
+
+/* FIXED SPACE BACKGROUND */
+    .space-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        background-image: url('../assets/images/fondoEstrellas.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .space-background::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+
+/* MAIN CONTAINER */
+    .container {
+        position: relative;
+        z-index: 10;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+    }
+
+
+/* PARALLAX ELEMENTS */
+    .parallax-element {
+        position: fixed;
+        z-index: 5;
+        pointer-events: none;
+        transition: transform 0.1s ease-out;
+    }
+
+    .bottle-parallax {
+        width: 80px;
+        height: auto;
+        opacity: 0.9;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+    }
+
+    .alien-parallax {
+        width: 200px;
+        height: auto;
+        opacity: 0.95;
+        filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+    }
+
+    /* Parallax positions */
+    .parallax-1 { top: 15%; left: 10%; }
+    .parallax-2 { top: 20%; right: 12%; }
+    .parallax-3 { bottom: 25%; left: 8%; }
+
+
+/* 404 IMAGE */
+    .error-image {
+        margin-bottom: 3rem;
+        animation: floatIn 1.5s ease-out;
+        position: relative;
+        z-index: 15;
+    }
+
+    .error-image img {
+        max-width: 700px;
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0 25px 60px rgba(244, 0, 9, 0.6));
+        animation: bounce 3s ease-in-out infinite;
+    }
+
+
+/* Animations */
+    @keyframes floatIn {
+        0% { opacity: 0; transform: translateY(-100px) scale(0.7); }
+        60% { transform: translateY(25px) scale(1.08); }
+        80% { transform: translateY(-10px) scale(0.98); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-25px); }
+    }
+
+
+/* GLOW BEHIND 404 */
+    .glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(244, 0, 9, 0.4), transparent 70%);
+        filter: blur(80px);
+        animation: pulse 4s ease-in-out infinite;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+
+/* TEXT CONTENT */
+    .content {
+        animation: fadeInUp 1s ease-out 0.5s both;
+        max-width: 700px;
+        position: relative;
+        z-index: 15;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(1.4rem, 4vw, 3rem);
+        letter-spacing: 2px;
+        margin-bottom: 0.6rem;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #ffffff 0%, #ffcccc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+    }
+
+    .subtitle {
+        font-size: clamp(0.85rem, 2vw, 1.3rem);
+        margin-bottom: 1.2rem;
+        color: #e6e6e6;
+        line-height: 1.45;
+    }
+
+    .description {
+        font-size: clamp(0.8rem, 1.7vw, 1.05rem);
+        color: #cccccc;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+
+/* BUTTON */
+    .btn-home {
+        display: inline-block;
+        padding: 1.3rem 3.5rem;
+        background: linear-gradient(135deg, #f40009 0%, #b00007 100%);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.15rem;
+        border-radius: 50px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 15px 40px rgba(244, 0, 9, 0.5);
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+
+    .btn-home::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn-home:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 50px rgba(244, 0, 9, 0.7);
+    }
+
+    .btn-home:hover::before {
+        width: 400px;
+        height: 400px;
+    }
+
+    .btn-home:active {
+        transform: translateY(-2px) scale(1.02);
+    }
+
+
+/* RESPONSIVE */
+    @media (max-width: 768px) {
+        .error-image img { max-width: 450px; }
+        .parallax-element { opacity: 0.6; }
+        .bottle-parallax { width: 50px; }
+        .alien-parallax { width: 120px; }
+        .btn-home { padding: 1.1rem 2.5rem; font-size: 1rem; }
+        .parallax-1 { top: 10%; left: 5%; }
+        .parallax-2 { top: 12%; right: 5%; }
+        .parallax-3 { display: none; }
+    }
+
+    @media (max-width: 480px) {
+        .error-image img { max-width: 320px; }
+        .container { padding: 1rem; }
+        .parallax-2 { display: none; }
+        .bottle-parallax { width: 40px; }
+    }
+
+
+/* MARCIANO (FIJO ABAJO) */
+    .martian-alone {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scale(0.4);
+        transform-origin: bottom center;
+        width: 260px;
+        height: auto;
+        z-index: 6;
+        opacity: 0.95;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+        transition:
+            transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+            width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+/* Martian EXPANDED */
+    .martian-alone.big {
+        width: 100vw;
+        transform: translateX(-50%) scale(0.5);
+    }
+
